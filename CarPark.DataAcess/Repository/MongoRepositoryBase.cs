@@ -278,6 +278,98 @@ namespace CarPark.DataAcess.Repository
 
             return result;
         }
+
+        public GetOneResult<TEntity> DeleteOne(Expression<Func<TEntity, bool>> filter)
+        {
+            var result = new GetOneResult<TEntity>();
+
+            try
+            {
+                var data = _collection.FindOneAndDelete(filter);
+
+            }
+            catch (Exception e)
+            {
+                result.Message = $"AsQueryable {e.Message} ";
+                result.Success = false;
+   
+            }
+
+            return result;
+        }
+
+        public async Task<GetOneResult<TEntity>> DeleteOneAsync(Expression<Func<TEntity, bool>> filter)
+        {
+            var result = new GetOneResult<TEntity>();
+
+            try
+            {
+                var data = await _collection.FindOneAndDeleteAsync(filter);
+            }
+            catch (Exception e)
+            {
+                result.Message = $"AsQueryable {e.Message} ";
+                result.Success = false;
+            }
+
+            return result;
+        }
+
+        public GetOneResult<TEntity> DeleteById(string Id)
+        {
+            var result = new GetOneResult<TEntity>();
+
+            try
+            {
+                var objectId = ObjectId.Parse(Id);
+                var filter = Builders<TEntity>.Filter.Eq("_id", objectId);
+
+                var data = _collection.FindOneAndDelete(filter);
+                if (data != null)
+                    result.Entity = data;
+            }
+            catch (Exception e)
+            {
+                result.Message = $"AsQueryable {e.Message} ";
+                result.Success = false;
+                result.Entity = null;
+            }
+
+            return result;
+        }
+
+        public async Task<GetOneResult<TEntity>> DeleteByIdAsync(string Id)
+        {
+            var result = new GetOneResult<TEntity>();
+
+            try
+            {
+                var objectId = ObjectId.Parse(Id);
+                var filter = Builders<TEntity>.Filter.Eq("_id", objectId);
+
+                var data = await _collection.FindOneAndDeleteAsync(filter);
+                if (data != null)
+                    result.Entity = data;
+            }
+            catch (Exception e)
+            {
+                result.Message = $"AsQueryable {e.Message} ";
+                result.Success = false;
+                result.Entity = null;
+            }
+
+            return result;
+        }
+
+        public void DeleteMany(Expression<Func<TEntity, bool>> filter)
+        {
+            _collection.DeleteMany(filter);
+        }
+
+        public async Task DeleteManyAsync(Expression<Func<TEntity, bool>> filter)
+        {
+           await _collection.DeleteManyAsync(filter);
+        }
     }
 }
 

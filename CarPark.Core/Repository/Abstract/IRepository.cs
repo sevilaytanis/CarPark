@@ -29,6 +29,19 @@ namespace CarPark.Core.Repository.Abstract
         GetManyResult<TEntity> InsertMany(ICollection<TEntity> entities);
         Task<GetManyResult<TEntity>> InsertManyAsync(ICollection<TEntity> entities);
 
+        /// <summary>
+        /// DElete kısmı
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        GetOneResult<TEntity> DeleteOne(Expression<Func<TEntity, bool>> filter);
+        Task<GetOneResult<TEntity>> DeleteOneAsync(Expression<Func<TEntity, bool>> filter);
+
+        GetOneResult<TEntity> DeleteById(string Id);
+        Task<GetOneResult<TEntity>> DeleteByIdAsync(string Id);
+
+        void DeleteMany(Expression<Func<TEntity, bool>> filter);
+        Task DeleteManyAsync(Expression<Func<TEntity, bool>> filter);
 
 
 
