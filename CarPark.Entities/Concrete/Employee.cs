@@ -3,19 +3,25 @@ using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using AspNetCore.Identity.MongoDbCore.Models;
+using MongoDbGenericRepository.Attributes;
 
 namespace CarPark.Entities.Concrete
 {
-    public class Employee : BaseModel
+    [CollectionName("Employee")]
+    public class Employee : MongoIdentityUser
     {
-    
+        public Employee()
+        {
+            CreateDate = DateTime.Now;
+            Status = 1;
+        }
+
         public string Username { get; set; }
 
-        public string Email { get; set; }
+
 
         public string Password { get; set; }
-
-        public string[] Roles { get; set; }
 
         public EmployeeContact Contact { get; set; }
 
@@ -24,7 +30,7 @@ namespace CarPark.Entities.Concrete
         public short Status { get; set; }
 
         public DateTime CreateDate { get; set; }
-        
+
         public DateTime? UpdateDate { get; set; }
 
     }

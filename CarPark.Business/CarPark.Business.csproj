@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CarPark.DataAcess\CarPark.DataAcess.csproj" />
+    <ProjectReference Include="..\CarPark.Entities\CarPark.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
