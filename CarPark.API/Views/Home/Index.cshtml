@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Microsoft.Extensions.Localization;
+@inject IStringLocalizer<SharedResource> localizer;
+
+<div class="text-center">
+
+    @localizer["Welcome"]
+</div>

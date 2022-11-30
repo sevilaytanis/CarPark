@@ -5,9 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
     <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CarPark.Business\CarPark.Business.csproj" />
+    <ProjectReference Include="..\CarPark.Core\CarPark.Core.csproj" />
+    <ProjectReference Include="..\CarPark.DataAcess\CarPark.DataAcess.csproj" />
+    <ProjectReference Include="..\CarPark.Entities\CarPark.Entities.csproj" />
+    <ProjectReference Include="..\CarPark.Helper\CarPark.Helper.csproj" />
+    <ProjectReference Include="..\CarPark.Models\CarPark.Models.csproj" />
   </ItemGroup>
 
 
